@@ -102,8 +102,12 @@ Laravel generează automat un token CSRF unic pentru fiecare sesiune a utilizato
 
 Se folosește comanda  `php artisan make:request NumeRequest`.
 
-În metoda `rules()` din clasa generată, se definesc regulile de validare. Această clasă se injectează automat în metodele de controler, de exemplu:
-
+În metoda `rules()` din clasa generată, se definesc regulile de validare. Această clasă se injectează automat în metodele de controler.
+```
+public function store(NumeRequest $request) {
+    $data = $request->validated();
+}
+```
 **4. Cum se protejează datele împotriva atacurilor XSS la afișarea în vizualizare?**
 
 Laravel protejează automat datele afișate utilizând funcția `htmlspecialchars()` prin sintaxa Blade `{{ $variable }}`. Pentru a afișa HTML sigur, se folosește sintaxa `{!! $variable !!}`, dar cu precauție și numai pentru date curate.
