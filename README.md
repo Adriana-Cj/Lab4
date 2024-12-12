@@ -87,8 +87,23 @@ Verificați că valoarea `category_id` există efectiv în baza de date și apar
 
 **1. Ce este validarea datelor și de ce este necesară?**
 
+Validarea datelor este procesul de verificare a datelor introduse de utilizatori pentru a se asigura că sunt corecte, complete și conforme cu cerințele aplicației. 
+
+Este necesară pentru:
+ - Prevenirea erorilor și problemelor tehnice.
+ - Protecția împotriva atacurilor (ex. injecții SQL).
+ - Asigurarea unei experiențe bune pentru utilizator.
+
 **2. Cum se asigură protecția formularului împotriva atacurilor CSRF în Laravel?**
+
+Laravel generează automat un token CSRF unic pentru fiecare sesiune a utilizatorului. Acest token este inclus în formulare și verificat la primirea cererilor POST. Dacă tokenul nu este valid, cererea este respinsă. Funcția @csrf în blade include acest token în formulare.
 
 **3. Cum se creează și utilizează clasele personalizate de cerere (Request) în Laravel?**
 
+Se folosește comanda  `php artisan make:request NumeRequest`.
+
+În metoda `rules()` din clasa generată, se definesc regulile de validare. Această clasă se injectează automat în metodele de controler, de exemplu:
+
 **4. Cum se protejează datele împotriva atacurilor XSS la afișarea în vizualizare?**
+
+Laravel protejează automat datele afișate utilizând funcția `htmlspecialchars()` prin sintaxa Blade `{{ $variable }}`. Pentru a afișa HTML sigur, se folosește sintaxa `{!! $variable !!}`, dar cu precauție și numai pentru date curate.
